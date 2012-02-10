@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page zscriptLanguage="GroovyGrails"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+<window apply="zk.testing.IndexComposer" border="normal" width="100%">
+<vbox width="100%" heights="150px,*">
+<tabbox id="myTabBox">
+ <tabs id="myTabs">
+   <tab id="guiTab" label="Query Builder" style="font-weight:bold;"/>
+   <tab id="sqlTab" label="SQL" style="font-weight:bold;"/>
+ </tabs> 
+ <tabpanels>
+  <tabpanel id="guiPanel"></tabpanel>
+  <tabpanel id="sqlPanel">
+   <hlayout>
+    <listbox id="columnListBox" width="400px">
+     <listhead sizable="true">
+       <listheader label="Column" sort="auto"/>
+       <listheader label="Description" sort="auto"/>
+     </listhead>
+     <listitem>
+       <listcell label="COMPANY_NAME" style="font-weight:bold;"/>
+       <listcell label="Name of Company" style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="CITY" style="font-weight:bold;"/>
+       <listcell label="City of company's headquarters." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="STATE" style="font-weight:bold;"/>
+       <listcell label="State where company's headquarters is located." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="SECOND_MARKET_URL" style="font-weight:bold;"/>
+       <listcell label="URL of company's SecondMarket profile if available." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="COMPANY_URL" style="font-weight:bold;"/>
+       <listcell label="URL of company's homepage." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="LAST_FUNDING_DATE" style="font-weight:bold;"/>
+       <listcell label="Month &amp; Year of company's last VC fundraiser." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="LAST_FUNDING_AMOUNT" style="font-weight:bold;"/>
+       <listcell label="Dollar amount raised company's last funding." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="UNIQUE_VISITORS" style="font-weight:bold;"/>
+       <listcell label="Last count of monthly unique website visitors." style="font-weight:bold;"/>
+     </listitem>
+     <listitem>
+       <listcell label="VISITOR_GROWTH" style="font-weight:bold;"/>
+       <listcell label="Annual Web traffic growth as measured by unique visitor count." style="font-weight:bold;"/>
+     </listitem>
+    </listbox>
+    <vlayout>
+     <textbox id="sqlTextBox" rows="6" width="700px">
+     </textbox>
+     <div align="center">
+      <button style="font-weight:bold;" label="Run Query" width="100px" height="30px" onClick="doClick();">
+      </button>
+     </div>
+    </vlayout>
+   </hlayout>
+  </tabpanel>
+ </tabpanels>
+</tabbox>
+<splitter id="s1" collapse="before"/>
+<tabbox>
+ <tabs>
+  <tab id="startupsTab" label="Startup Fundraisers" style="font-weight:bold;"/>
+  <tab id="iposTab" label="IPOs" style="font-weight:bold;"/>
+  <tab id="sposTab" label="Secondary Offerings" style="font-weight:bold;"/>
+ </tabs>
+ <tabpanels>
+ <tabpanel> 
+ <div style="font-weight:bold;">
+ <grid> 
+  <auxhead>
+   <auxheader colspan="2" label="Startup Venture Capital Fundraisers"/>
+  </auxhead>
+  <columns id="gridColumns" sizable="true">
+    <column sort="auto"><label value="Company Name" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="City" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="State" style="font-weight:bold;"/></column>
+    <column><label value="SecondMarket URL" style="font-weight:bold;"/></column>
+    <column><label value="Company URL" style="font-weight:bold;"/></column>
+    <column align="right" sort="auto"><label value="Last Funding Date" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Last Funding Amount" style="font-weight:bold;"/></column>
+    <column align="right" sort="auto"><label value="Unique Web Visitors" style="font-weight:bold;"/></column>
+    <column align="right" sort="auto"><label value="1-Yr Web Visitor Growth" style="font-weight:bold;"/></column>
+  </columns>
+  <rows id="startupRows"/>
+ </grid>
+ </div>
+ </tabpanel>
+ <tabpanel>
+  <grid>
+   <auxhead>
+     <auxheader colspan="1" label="IPOs Data"/>
+   </auxhead> 
+   <columns id="ipoColumns" sizable="true">
+    <column sort="auto"><label value="Type" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Company Name" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Ticker Symbol" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Market" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Price" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Shares" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Offer Amount" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Date Priced" style="font-weight:bold;"/></column>
+   </columns>
+   <rows id="ipoRows"/>
+  </grid> 
+ </tabpanel>
+ <tabpanel>
+  <grid>
+   <auxhead>
+     <auxheader colspan="2" label="Secondary Offerings Data"/>
+   </auxhead>
+   <columns id="spoColumns" sizable="true">
+    <column sort="auto"><label value="Type" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Company Name" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Ticker Symbol" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Market" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Price" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Shares" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Offer Amount" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Date Priced" style="font-weight:bold;"/></column>
+   </columns>
+   <rows id="spoRows"/>
+  </grid>
+ </tabpanel>
+ </tabpanels>
+</tabbox>
+</vbox>
+</window>
+</zk>
