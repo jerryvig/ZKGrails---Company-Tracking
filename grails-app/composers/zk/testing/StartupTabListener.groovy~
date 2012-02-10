@@ -3,18 +3,21 @@ package zk.testing
 import org.zkoss.zk.ui.event.EventListener
 import org.zkoss.zk.ui.event.Event
 import org.zkoss.zkgrails.*
-import org.zkoss.zk.ui.util.Clients
+import org.zkoss.zul.Listitem
+import org.zkoss.zul.Listcell
+import org.zkoss.zul.Listhead
+import org.zkoss.zul.Listheader
+import groovy.sql.Sql
 
-public class StartupTabListener implements EventListener {
-      def startupQuery
-      def sqlTextBox
+public class StartupTabListener extends TabListener {
 
-      public StartupTabListener( def _startupQuery, def _sqlTextBox ) {
-         startupQuery = _startupQuery
-         sqlTextBox = _sqlTextBox
-      }
+      def descQuery = "SELECT * FROM second_market_fact_desc"
+
+      p
 
       public void onEvent( Event event ) {
-         sqlTextBox.setValue( startupQuery ) 
+        sqlTextBox.setValue( query )
+        clearDescTable()
+        renderDescTable( descQuery )
       }
 }
