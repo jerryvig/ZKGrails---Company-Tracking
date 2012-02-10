@@ -15,6 +15,6 @@ public class StartupTabListener implements EventListener {
       }
 
       public void onEvent( Event event ) {
-         sqlTextBox.setVaue( startupQuery ) 
+         sqlTextBox.setValue( startupQuery ) 
       }
 }

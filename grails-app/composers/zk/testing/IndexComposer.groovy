@@ -134,8 +134,8 @@ class IndexComposer extends GrailsComposer {
     }
 
     def initEventListeners () {
-       startupsTab.addEventListener("onSelect",new StartupTabListener( startupQuery, sqlTextBox ))
-       iposTab.addEventListener("onSelect",new IposTabListener( iposQuery, sqlTextBox ))
-       sposTab.addEventListener("onSelect",new SposTabListener( sposQuery, sqlTextBox ))
+       startupsTab.addEventListener("onSelect",new StartupTabListener( startupQuery, sqlTextBox, columnListBox ))
+       iposTab.addEventListener("onSelect",new IposTabListener( iposQuery, sqlTextBox, columnListBox ))
+       sposTab.addEventListener("onSelect",new SposTabListener( sposQuery, sqlTextBox, columnListBox ))
     }
 }
