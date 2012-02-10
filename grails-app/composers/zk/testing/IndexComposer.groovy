@@ -17,6 +17,7 @@ class IndexComposer extends GrailsComposer {
     def startupsTab
     def iposTab
     def sposTab
+    def columnListBox
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
     def integerFormatter = new DecimalFormat("#,###")
@@ -31,8 +32,9 @@ class IndexComposer extends GrailsComposer {
       initStartupRows()
       initIpoRows()
       initSpoRows()
+      initColumnListBox()
       sqlTextBox.setValue( startupQuery )
-      addEventListeners()
+      initEventListeners()
     }
 
     def initStartupRows() {
@@ -118,7 +120,20 @@ class IndexComposer extends GrailsComposer {
       }
     }
 
-    def addEventListeners () {
+    def initColumnListBox () {
+      sql.eachRow( "SELECT * FROM second_market_fact_desc" ) {
+        def myListitem = new Listitem()
+        def cell1 = new Listcell( it.column_name )
+        cell1.setStyle("font-weight:bold;")
+        def cell2 = new Listcell( it.description )
+        cell2.setStyle("font-weight:bold;")
+        myListitem.appendChild( cell1 )
+        myListitem.appendChild( cell2 )
+        columnListBox.appendChild( myListitem )
+      }
+    }
+
+    def initEventListeners () {
        startupsTab.addEventListener("onSelect",new StartupTabListener( startupQuery, sqlTextBox ))
        iposTab.addEventListener("onSelect",new IposTabListener( iposQuery, sqlTextBox ))
        sposTab.addEventListener("onSelect",new SposTabListener( sposQuery, sqlTextBox ))

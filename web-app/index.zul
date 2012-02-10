@@ -22,42 +22,6 @@
        <listheader label="Column" sort="auto"/>
        <listheader label="Description" sort="auto"/>
      </listhead>
-     <listitem>
-       <listcell label="COMPANY_NAME" style="font-weight:bold;"/>
-       <listcell label="Name of Company" style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="CITY" style="font-weight:bold;"/>
-       <listcell label="City of company's headquarters." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="STATE" style="font-weight:bold;"/>
-       <listcell label="State where company's headquarters is located." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="SECOND_MARKET_URL" style="font-weight:bold;"/>
-       <listcell label="URL of company's SecondMarket profile if available." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="COMPANY_URL" style="font-weight:bold;"/>
-       <listcell label="URL of company's homepage." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="LAST_FUNDING_DATE" style="font-weight:bold;"/>
-       <listcell label="Month &amp; Year of company's last VC fundraiser." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="LAST_FUNDING_AMOUNT" style="font-weight:bold;"/>
-       <listcell label="Dollar amount raised company's last funding." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="UNIQUE_VISITORS" style="font-weight:bold;"/>
-       <listcell label="Last count of monthly unique website visitors." style="font-weight:bold;"/>
-     </listitem>
-     <listitem>
-       <listcell label="VISITOR_GROWTH" style="font-weight:bold;"/>
-       <listcell label="Annual Web traffic growth as measured by unique visitor count." style="font-weight:bold;"/>
-     </listitem>
     </listbox>
     <vlayout>
      <textbox id="sqlTextBox" rows="6" width="700px">
