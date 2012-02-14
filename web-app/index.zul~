@@ -73,11 +73,11 @@
     <column sort="auto"><label value="Type" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Company Name" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Ticker Symbol" style="font-weight:bold;"/></column>
-    <column sort="auto" align="right"><label value="Offer Amount" style="font-weight:bold;"/></column>
-    <column sort="auto" align="right"><label value="Date Priced/Filed" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="Nasdaq Profile URL" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="City" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="State" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Market" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Price" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Shares" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Offer Amount" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Date Priced" style="font-weight:bold;"/></column>
    </columns>
    <rows id="ipoRows"/>
   </grid> 
@@ -91,11 +91,11 @@
     <column sort="auto"><label value="Type" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Company Name" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Ticker Symbol" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Market" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Price" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Shares" style="font-weight:bold;"/></column>
     <column sort="auto" align="right"><label value="Offer Amount" style="font-weight:bold;"/></column>
-    <column sort="auto" align="right"><label value="Date Priced/Filed" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="Nasdaq Profile URL" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="City" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="State" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Date Priced" style="font-weight:bold;"/></column>
    </columns>
    <rows id="spoRows"/>
   </grid>

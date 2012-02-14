@@ -12,28 +12,15 @@ import groovy.sql.Sql
 
 public class IposTabListener extends TabListener {
 
+      def descQuery = "SELECT type, company_name, ticker_symbol, market, price, shares, offer_amount, date_priced FROM nasdaq_ipos WHERE state='CA' ORDER BY date_priced DESC"
 
-
-      public StartupTabListener( def _query, def _sqlTextBox, def _colListBox ) {
+      public IposTabListener( def _query, def _sqlTextBox, def _colListBox ) {
         super( _query, _sqlTextBox, _colListBox )
       }
-
 
       public void onEvent( Event event ) {
         sqlTextBox.setValue( query )
         clearDescTable()        
-
-
-
-        sql.eachRow( "SELECT * FROM nasdaq_ipos_desc" ) {
-          Listitem myItem = new Listitem()
-          Listcell cell1 = new Listcell( it.column_name )
-          Listcell cell2 = new Listcell( it.description )
-          cell1.setStyle("font-weight:bold;")
-          cell2.setStyle("font-weight:bold;")
-          myItem.appendChild( cell1 )
-          myItem.appendChild( cell2 )
-          columnListBox.appendChild( myItem )
-        }         
+        renderDescTable( descQuery )
       }
 }
