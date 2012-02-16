@@ -19,6 +19,8 @@ class IndexComposer extends GrailsComposer {
     def iposTab
     def sposTab
     def columnListBox
+    def uniqueVisitorsColumn
+
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
     def fullDateFormatter = new SimpleDateFormat("MM/dd/yyyy")
@@ -174,5 +176,6 @@ class IndexComposer extends GrailsComposer {
        startupsTab.addEventListener("onSelect",new StartupTabListener( startupQuery, sqlTextBox, columnListBox ))
        iposTab.addEventListener("onSelect",new IposTabListener( iposQuery, sqlTextBox, columnListBox ))
        sposTab.addEventListener("onSelect",new SposTabListener( sposQuery, sqlTextBox, columnListBox ))
+       uniqueVisitorsColumn.addEventListener("onClick",new UniqueVisitorsListener( competeRows ))
     }
 }
