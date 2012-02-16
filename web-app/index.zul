@@ -41,6 +41,7 @@
   <tab id="startupsTab" label="Startup Fundraisers" style="font-weight:bold;"/>
   <tab id="iposTab" label="IPOs" style="font-weight:bold;"/>
   <tab id="sposTab" label="Secondary Offerings" style="font-weight:bold;"/>
+  <tab id="competeTab" label="Compete Web Traffic" style="font-weight:bold;"/>
  </tabs>
  <tabpanels>
  <tabpanel> 
@@ -100,6 +101,21 @@
    <rows id="spoRows"/>
   </grid>
  </tabpanel>
+ <tabpanel>
+  <grid>
+   <auxhead>
+    <auxheader colspan="3" label="Quantcast Compete Web Traffic Data"/>
+   </auxhead>
+   <columns id="competeColumns" sizable="true">
+    <column sort="auto"><label value="Domain" style="font-weight:bold;"/></column>
+    <column sort="auto"><label value="Latest Month" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Unique Visitors" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Three Month Visitor Growth" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Cumulative Visitor Growth" style="font-weight:bold;"/></column>
+    <column sort="auto" align="right"><label value="Sharpe of Visitor Growth" style="font-weight:bold;"/></column>
+   </columns>
+   </grid>
+  </tabpanel>
  </tabpanels>
 </tabbox>
 </vbox>
