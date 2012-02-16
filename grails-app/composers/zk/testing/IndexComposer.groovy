@@ -13,6 +13,7 @@ class IndexComposer extends GrailsComposer {
     def startupRows
     def ipoRows
     def spoRows
+    def competeRows
     def sqlTextBox
     def startupsTab
     def iposTab
@@ -27,6 +28,7 @@ class IndexComposer extends GrailsComposer {
     def startupQuery = "SELECT * FROM (SELECT * FROM second_market_fact_table WHERE ( state='CA' ) ORDER BY last_funding_date DESC, last_funding_amount DESC) WHERE rownum<251"
     def iposQuery = "SELECT type, company_name, company_url, ticker_symbol_ii, offer_amount, date_priced, nasdaq_profile_url, city, state FROM nasdaq_ipos WHERE state='CA' ORDER BY date_priced DESC, offer_amount DESC";
     def sposQuery = "SELECT type, company_name, company_url, ticker_symbol, offer_amount, date_priced, nasdaq_profile_url, city, state FROM nasdaq_spos WHERE state='CA' ORDER BY date_priced DESC, offer_amount DESC";
+    def competeQuery = "SELECT * FROM (SELECT * FROM quantcast_report ORDER BY three_month_change DESC) WHERE rownum<251"
 
     def afterCompose = { window ->
       // initialize components here
@@ -34,6 +36,7 @@ class IndexComposer extends GrailsComposer {
       initIpoRows()
       initSpoRows()
       initColumnListBox()
+      initCompeteWebTrafficRows()
       sqlTextBox.setValue( startupQuery )
       initEventListeners()
     }
@@ -121,9 +124,36 @@ class IndexComposer extends GrailsComposer {
 
         cellList.each { cell ->
           cell.setStyle("font-weight:bold;")
-          myRow.appendChild( cell ); }
+          myRow.appendChild( cell );
+        }
 
          spoRows.appendChild( myRow )
+      }
+    }
+
+    def initCompeteWebTrafficRows() {
+      sql.eachRow( competeQuery ) {
+        def nextRow = new Row()
+        def cells = []
+        def domainA = new A( it.domain )
+        domainA.setHref( "http://" + it.domain )
+        domainA.setTarget("_blank")
+        cells.add( domainA )
+        def competeA = new A( dateFormatter.format(it.last_month) )
+        competeA.setHref( "http://siteanalytics.compete.com/" + it.domain + "/" )
+        competeA.setTarget("_blank")      
+        cells.add( competeA )
+
+        cells.add( new Label( integerFormatter.format(it.unique_visitors) ) )
+        cells.add( new Label( pctFormatter.format(it.three_month_change) ) )
+        cells.add( new Label( pctFormatter.format(it.cumulative_growth) ) )
+        cells.add( new Label( pctFormatter.format(it.sharpe_growth) ) )
+
+        cells.each { cell ->
+          cell.setStyle("font-weight:bold;")
+          nextRow.appendChild( cell )
+        }
+        competeRows.appendChild( nextRow )
       }
     }
 

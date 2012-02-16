@@ -114,6 +114,7 @@
     <column sort="auto" align="right"><label value="Cumulative Visitor Growth" style="font-weight:bold;"/></column>
     <column sort="auto" align="right"><label value="Sharpe of Visitor Growth" style="font-weight:bold;"/></column>
    </columns>
+   <rows id="competeRows"/>
    </grid>
   </tabpanel>
  </tabpanels>
