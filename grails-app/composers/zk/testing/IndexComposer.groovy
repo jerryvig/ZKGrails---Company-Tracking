@@ -23,6 +23,7 @@ class IndexComposer extends GrailsComposer {
     def threeMonthColumn
     def cumulativeColumn
     def sharpeColumn
+    def offerAmountColumn
 
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
@@ -68,7 +69,10 @@ class IndexComposer extends GrailsComposer {
            cellList.add( new Label( integerFormatter.format(it.unique_visitors) ) )
          } else { cellList.add( new Label() ) }
          if ( it.visitor_growth != null ) {
-           cellList.add( new Label( pctFormatter.format(it.visitor_growth) ) )
+           def visitorGrowthA = new A(  pctFormatter.format(it.visitor_growth) )
+           visitorGrowthA.setTarget("_blank")
+           visitorGrowthA.setHref( "http://siteanalytics.compete.com/" + it.company_url.replace("http://","").replace("https://","") )
+           cellList.add( visitorGrowthA )
          } else { cellList.add( new Label() ) }
 
          cellList.each { cell ->
@@ -183,5 +187,6 @@ class IndexComposer extends GrailsComposer {
        threeMonthColumn.addEventListener("onClick",new ThreeMonthListener( competeRows ))
        cumulativeColumn.addEventListener("onClick",new CumulativeListener( competeRows ))
        sharpeColumn.addEventListener("onClick",new SharpeListener( competeRows ))
+       offerAmountColumn.addEventListener("onClick",new OfferAmountListener( ipoRows ))
     }
 }
