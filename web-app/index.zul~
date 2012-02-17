@@ -109,7 +109,7 @@
    <columns id="competeColumns" sizable="true">
     <column sort="auto"><label value="Domain" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Latest Month" style="font-weight:bold;"/></column>
-    <column id="uniqueVisitorsColumn" sort="auto" align="right"><label value="Unique Visitors" style="font-weight:bold;"/></column>
+    <column id="uniqueVisitorsColumn" align="right"><label value="Unique Visitors" style="font-weight:bold;"/></column>
     <column sort="auto" align="right"><label value="Three Month Visitor Growth" style="font-weight:bold;"/></column>
     <column sort="auto" align="right"><label value="Cumulative Visitor Growth" style="font-weight:bold;"/></column>
     <column sort="auto" align="right"><label value="Sharpe of Visitor Growth" style="font-weight:bold;"/></column>

@@ -10,18 +10,18 @@ import org.zkoss.zul.Label
 import org.zkoss.zul.A
 import org.zkoss.zul.Row
 
-public class UniqueVisitorsListener extends ColumnListener { 
+public class ThreeMonthListener extends ColumnListener { 
 
-  def UniqueVisitorsListener( def _tableRows ) {
+  def ThreeMonthListener( def _tableRows ) {
     tableRows = _tableRows
     sortDirection = "DESC"
-    query = "SELECT * FROM (SELECT * FROM quantcast_report ORDER BY unique_visitors "+sortDirection+") WHERE rownum<251"
+    query = "SELECT * FROM (SELECT * FROM quantcast_report ORDER BY three_month_change "+sortDirection+") WHERE rownum<251"
   }
 
   public void onEvent( Event event ) {
     clearTableRows()
-
-    query = "SELECT * FROM (SELECT * FROM quantcast_report ORDER BY unique_visitors "+sortDirection+") WHERE rownum<251"
+ 
+    query = "SELECT * FROM (SELECT * FROM quantcast_report ORDER BY three_month_change "+sortDirection+") WHERE rownum<251"
 
     sql.eachRow( query ) {   
        def cells = []

@@ -33,7 +33,7 @@ public class UniqueVisitorsListener implements EventListener {
        domainA.setHref( "http://" + it.domain )
        domainA.setTarget("_blank")
        cells.add( domainA )
-       def competeA = new A( it.domain )
+       def competeA = new A( dateFormatter.format(it.last_month) )
        competeA.setHref( "http://siteanalytics.compete.com/" + it.domain + "/" )
        competeA.setTarget( "_blank" )
        cells.add( competeA )
