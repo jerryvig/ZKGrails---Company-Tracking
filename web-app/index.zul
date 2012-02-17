@@ -77,8 +77,8 @@
     <column id="offerAmountColumn" align="right"><label value="Offer Amount" style="font-weight:bold;"/></column>
     <column id="datePricedColumn" align="right"><label value="Date Priced/Filed" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Nasdaq Profile URL" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="City" style="font-weight:bold;"/></column>
-    <column sort="auto"><label value="State" style="font-weight:bold;"/></column>
+    <column id="cityColumn"><label value="City" style="font-weight:bold;"/></column>
+    <column id="stateColumn"><label value="State" style="font-weight:bold;"/></column>
    </columns>
    <rows id="ipoRows"/>
   </grid> 

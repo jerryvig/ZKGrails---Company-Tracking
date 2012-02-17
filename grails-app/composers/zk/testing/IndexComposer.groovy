@@ -24,6 +24,7 @@ class IndexComposer extends GrailsComposer {
     def cumulativeColumn
     def sharpeColumn
     def offerAmountColumn
+    def datePricedColumn
 
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
@@ -188,5 +189,6 @@ class IndexComposer extends GrailsComposer {
        cumulativeColumn.addEventListener("onClick",new CumulativeListener( competeRows ))
        sharpeColumn.addEventListener("onClick",new SharpeListener( competeRows ))
        offerAmountColumn.addEventListener("onClick",new OfferAmountListener( ipoRows ))
+       datePricedColumn.addEventListener("onClick",new DatePricedListener( ipoRows ))
     }
 }
