@@ -25,6 +25,14 @@ class IndexComposer extends GrailsComposer {
     def sharpeColumn
     def offerAmountColumn
     def datePricedColumn
+    def cityColumn
+    def stateColumn
+    def spoOfferAmountColumn
+    def spoDatePricedColumn
+    def fundingDateColumn
+    def fundingAmountColumn
+    def startupUniqueVisitorsColumn
+    def startupVisitorGrowthColumn
 
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
@@ -190,5 +198,13 @@ class IndexComposer extends GrailsComposer {
        sharpeColumn.addEventListener("onClick",new SharpeListener( competeRows ))
        offerAmountColumn.addEventListener("onClick",new OfferAmountListener( ipoRows ))
        datePricedColumn.addEventListener("onClick",new DatePricedListener( ipoRows ))
+       cityColumn.addEventListener("onClick",new CityListener( ipoRows ))
+       stateColumn.addEventListener("onClick",new StateListener( ipoRows ))
+       spoOfferAmountColumn.addEventListener("onClick",new SpoOfferAmountListener( spoRows ))
+       spoDatePricedColumn.addEventListener("onClick",new SpoDatePricedListener( spoRows ))
+       fundingDateColumn.addEventListener("onClick",new FundingDateListener( startupRows ))
+       fundingAmountColumn.addEventListener("onClick",new FundingAmountListener( startupRows ))
+       startupUniqueVisitorsColumn.addEventListener("onClick",new StartupUniqueVisitorsListener(startupRows))
+       startupVisitorGrowthColumn.addEventListener("onClick",new StartupVisitorGrowthListener(startupRows))
     }
 }

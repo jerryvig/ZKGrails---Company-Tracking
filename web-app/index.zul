@@ -56,10 +56,10 @@
     <column sort="auto"><label value="State" style="font-weight:bold;"/></column>
     <column><label value="SecondMarket URL" style="font-weight:bold;"/></column>
     <column><label value="Company URL" style="font-weight:bold;"/></column>
-    <column align="right" sort="auto"><label value="Last Funding Date" style="font-weight:bold;"/></column>
-    <column sort="auto" align="right"><label value="Last Funding Amount" style="font-weight:bold;"/></column>
-    <column align="right" sort="auto"><label value="Unique Web Visitors" style="font-weight:bold;"/></column>
-    <column align="right" sort="auto"><label value="1-Yr Web Visitor Growth" style="font-weight:bold;"/></column>
+    <column align="right" id="fundingDateColumn"><label value="Last Funding Date" style="font-weight:bold;"/></column>
+    <column align="right" id="fundingAmountColumn"><label value="Last Funding Amount" style="font-weight:bold;"/></column>
+    <column align="right" id="startupUniqueVisitorsColumn"><label value="Unique Web Visitors" style="font-weight:bold;"/></column>
+    <column align="right" id="startupVisitorGrowthColumn"><label value="1-Yr Web Visitor Growth" style="font-weight:bold;"/></column>
   </columns>
   <rows id="startupRows"/>
  </grid>
@@ -92,8 +92,8 @@
     <column sort="auto"><label value="Type" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Company Name" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Ticker Symbol" style="font-weight:bold;"/></column>
-    <column sort="auto" align="right"><label value="Offer Amount" style="font-weight:bold;"/></column>
-    <column sort="auto" align="right"><label value="Date Priced/Filed" style="font-weight:bold;"/></column>
+    <column id="spoOfferAmountColumn" align="right"><label value="Offer Amount" style="font-weight:bold;"/></column>
+    <column id="spoDatePricedColumn" align="right"><label value="Date Priced/Filed" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="Nasdaq Profile URL" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="City" style="font-weight:bold;"/></column>
     <column sort="auto"><label value="State" style="font-weight:bold;"/></column>
