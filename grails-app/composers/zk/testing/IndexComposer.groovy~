@@ -13,11 +13,27 @@ class IndexComposer extends GrailsComposer {
     def startupRows
     def ipoRows
     def spoRows
+    def competeRows
     def sqlTextBox
     def startupsTab
     def iposTab
     def sposTab
     def columnListBox
+    def uniqueVisitorsColumn
+    def threeMonthColumn
+    def cumulativeColumn
+    def sharpeColumn
+    def offerAmountColumn
+    def datePricedColumn
+    def cityColumn
+    def stateColumn
+    def spoOfferAmountColumn
+    def spoDatePricedColumn
+    def fundingDateColumn
+    def fundingAmountColumn
+    def startupUniqueVisitorsColumn
+    def startupVisitorGrowthColumn
+
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
     def fullDateFormatter = new SimpleDateFormat("MM/dd/yyyy")
@@ -27,6 +43,7 @@ class IndexComposer extends GrailsComposer {
     def startupQuery = "SELECT * FROM (SELECT * FROM second_market_fact_table WHERE ( state='CA' ) ORDER BY last_funding_date DESC, last_funding_amount DESC) WHERE rownum<251"
     def iposQuery = "SELECT type, company_name, company_url, ticker_symbol_ii, offer_amount, date_priced, nasdaq_profile_url, city, state FROM nasdaq_ipos WHERE state='CA' ORDER BY date_priced DESC, offer_amount DESC";
     def sposQuery = "SELECT type, company_name, company_url, ticker_symbol, offer_amount, date_priced, nasdaq_profile_url, city, state FROM nasdaq_spos WHERE state='CA' ORDER BY date_priced DESC, offer_amount DESC";
+    def competeQuery = "SELECT * FROM (SELECT * FROM quantcast_report ORDER BY three_month_change DESC) WHERE rownum<251"
 
     def afterCompose = { window ->
       // initialize components here
@@ -34,6 +51,7 @@ class IndexComposer extends GrailsComposer {
       initIpoRows()
       initSpoRows()
       initColumnListBox()
+      initCompeteWebTrafficRows()
       sqlTextBox.setValue( startupQuery )
       initEventListeners()
     }
@@ -60,7 +78,10 @@ class IndexComposer extends GrailsComposer {
            cellList.add( new Label( integerFormatter.format(it.unique_visitors) ) )
          } else { cellList.add( new Label() ) }
          if ( it.visitor_growth != null ) {
-           cellList.add( new Label( pctFormatter.format(it.visitor_growth) ) )
+           def visitorGrowthA = new A(  pctFormatter.format(it.visitor_growth) )
+           visitorGrowthA.setTarget("_blank")
+           visitorGrowthA.setHref( "http://siteanalytics.compete.com/" + it.company_url.replace("http://","").replace("https://","") )
+           cellList.add( visitorGrowthA )
          } else { cellList.add( new Label() ) }
 
          cellList.each { cell ->
@@ -121,9 +142,36 @@ class IndexComposer extends GrailsComposer {
 
         cellList.each { cell ->
           cell.setStyle("font-weight:bold;")
-          myRow.appendChild( cell ); }
+          myRow.appendChild( cell );
+        }
 
          spoRows.appendChild( myRow )
+      }
+    }
+
+    def initCompeteWebTrafficRows() {
+      sql.eachRow( competeQuery ) {
+        def nextRow = new Row()
+        def cells = []
+        def domainA = new A( it.domain )
+        domainA.setHref( "http://" + it.domain )
+        domainA.setTarget("_blank")
+        cells.add( domainA )
+        def competeA = new A( dateFormatter.format(it.last_month) )
+        competeA.setHref( "http://siteanalytics.compete.com/" + it.domain + "/" )
+        competeA.setTarget("_blank")      
+        cells.add( competeA )
+
+        cells.add( new Label( integerFormatter.format(it.unique_visitors) ) )
+        cells.add( new Label( pctFormatter.format(it.three_month_change) ) )
+        cells.add( new Label( pctFormatter.format(it.cumulative_growth) ) )
+        cells.add( new Label( pctFormatter.format(it.sharpe_growth) ) )
+
+        cells.each { cell ->
+          cell.setStyle("font-weight:bold;")
+          nextRow.appendChild( cell )
+        }
+        competeRows.appendChild( nextRow )
       }
     }
 
@@ -144,5 +192,19 @@ class IndexComposer extends GrailsComposer {
        startupsTab.addEventListener("onSelect",new StartupTabListener( startupQuery, sqlTextBox, columnListBox ))
        iposTab.addEventListener("onSelect",new IposTabListener( iposQuery, sqlTextBox, columnListBox ))
        sposTab.addEventListener("onSelect",new SposTabListener( sposQuery, sqlTextBox, columnListBox ))
+       uniqueVisitorsColumn.addEventListener("onClick",new UniqueVisitorsListener( competeRows ))
+       threeMonthColumn.addEventListener("onClick",new ThreeMonthListener( competeRows ))
+       cumulativeColumn.addEventListener("onClick",new CumulativeListener( competeRows ))
+       sharpeColumn.addEventListener("onClick",new SharpeListener( competeRows ))
+       offerAmountColumn.addEventListener("onClick",new OfferAmountListener( ipoRows ))
+       datePricedColumn.addEventListener("onClick",new DatePricedListener( ipoRows ))
+       cityColumn.addEventListener("onClick",new CityListener( ipoRows ))
+       stateColumn.addEventListener("onClick",new StateListener( ipoRows ))
+       spoOfferAmountColumn.addEventListener("onClick",new SpoOfferAmountListener( spoRows ))
+       spoDatePricedColumn.addEventListener("onClick",new SpoDatePricedListener( spoRows ))
+       fundingDateColumn.addEventListener("onClick",new FundingDateListener( startupRows ))
+       fundingAmountColumn.addEventListener("onClick",new FundingAmountListener( startupRows ))
+       startupUniqueVisitorsColumn.addEventListener("onClick",new StartupUniqueVisitorsListener(startupRows))
+       startupVisitorGrowthColumn.addEventListener("onClick",new StartupVisitorGrowthListener(startupRows))
     }
 }

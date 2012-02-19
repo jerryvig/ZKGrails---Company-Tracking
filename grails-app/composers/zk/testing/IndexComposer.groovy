@@ -33,6 +33,7 @@ class IndexComposer extends GrailsComposer {
     def fundingAmountColumn
     def startupUniqueVisitorsColumn
     def startupVisitorGrowthColumn
+    def guiPanel
 
     def sql = Sql.newInstance("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE","morningstar","uptime5","oracle.jdbc.OracleDriver")
     def dateFormatter = new SimpleDateFormat("MMM-yy")
@@ -52,6 +53,7 @@ class IndexComposer extends GrailsComposer {
       initSpoRows()
       initColumnListBox()
       initCompeteWebTrafficRows()
+      GuiGridComposer.composeGuiGrid( guiPanel )
       sqlTextBox.setValue( startupQuery )
       initEventListeners()
     }

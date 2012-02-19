@@ -1,0 +1,90 @@
+package zk.testing;
+
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import org.zkoss.zul.*
+
+public class GuiGridComposer {
+
+public static def composeGuiGrid( guiPanel ) {
+  def columnNames = [ "In Results", "Column", "Operator", "Value", "Sort Order", "Sort Level" ]
+  def columnList = []
+
+  columnNames.each {
+    columnList.add( new Column( it ) )
+  }
+
+  def guiColumns = new Columns() 
+  columnList.each { col ->
+    col.setAlign("center")
+    guiColumns.appendChild( col )
+  }
+  guiColumns.setSizable( true )
+  def guiGrid = new Grid()
+  guiGrid.appendChild( guiColumns )
+
+  def guiRows = new Rows()
+  def rowNames = [ "Company Name", "City", "State", "Second Market URL", "Company URL", "Last Funding Date", "Last Funding Amount", "Unique Web Visitors", "Web Visitor Growth" ]
+
+  rowNames.each {
+     def columnRow = new Row()
+     def cBox = new Checkbox()
+     cBox.setChecked( true )
+     columnRow.appendChild( cBox )
+
+     def lbl = new Label( it )
+     lbl.setStyle("font-weight:bold;")
+     columnRow.appendChild( lbl )
+     def ops = new Listbox()
+     ops.setMold( "select" )
+     ops.appendItem("=","eq")
+     ops.appendItem(">","gt")
+     ops.appendItem(">=","gte")
+     ops.appendItem("<","lt")
+     ops.appendItem("<=","lte")
+     ops.appendItem("!=","ne")
+     ops.appendItem("LIKE","like")
+     ops.appendItem("NOT LIKE","nlike")
+     ops.appendItem("IN","in")
+     ops.appendItem("NOT IN","nin")
+     ops.appendItem("BETWEEN","bet")
+     ops.appendItem("IS NULL","isnull")
+     ops.appendItem("IS NOT NULL","isnotnull")
+     columnRow.appendChild( ops )
+
+     def valuesTextbox = new Textbox()
+     valuesTextbox.setCols(25)
+     columnRow.appendChild( valuesTextbox )
+
+     def sortOps = new Listbox()
+     sortOps.setMold("select")
+     sortOps.appendItem("None","None")
+     sortOps.appendItem("Ascending","ASC")
+     sortOps.appendItem("Descending","DESC")
+     columnRow.appendChild( sortOps )
+
+     def sortLevelOps = new Listbox()
+     sortLevelOps.setMold("select")
+     sortLevelOps.appendItem("None","0")
+     for ( i in 1..3 ) {
+       sortLevelOps.appendItem( Integer.toString(i), Integer.toString(i) )
+     }
+     columnRow.appendChild( sortLevelOps )
+
+     guiRows.appendChild( columnRow )
+  }
+
+  def buttonRow = new Row()
+  def buttonCell = new Cell()
+  buttonCell.setColspan(6)
+  buttonCell.setAlign("center")
+  def submitButton = new Button("Run Query")
+  submitButton.setStyle("font-weight:bold;")
+  buttonCell.appendChild( submitButton )
+  buttonRow.appendChild( buttonCell )
+  guiRows.appendChild( buttonRow )
+
+  guiGrid.appendChild( guiRows )
+  guiPanel.appendChild( guiGrid )
+}
+}
