@@ -1,0 +1,10 @@
+package zk.testing
+
+import org.zkoss.zkgrails.*
+
+class DividendsComposer extends GrailsComposer {
+
+    def afterCompose = { window ->
+        // initialize components here
+    }
+}

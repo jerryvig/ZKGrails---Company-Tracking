@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page zscriptLanguage="GroovyGrails"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+<window apply="zk.testing.DividendsComposer" border="normal" width="100%">
+ <grid>
+  <auxhead>
+   <auxheader label="ETF Dividend Yields" colspan="3"/>
+  </auxhead>
+  <columns sizable="true">
+   <column label="Ticker Symbol" sort="auto"/>
+   <column align="right" label="Trailing Annual Dividend"/>
+   <column align="right" label="Last Price"/>
+   <column align="right" label="Dividend Yield"/>
+  </columns>
+  <rows id="dividendRows"></rows>
+ </grid>
+</window>
+</zk>
