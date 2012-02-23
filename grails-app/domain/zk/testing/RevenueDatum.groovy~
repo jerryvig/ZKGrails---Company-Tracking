@@ -1,0 +1,7 @@
+package zk.testing
+
+class RevenueDatum {
+
+    static constraints = {
+    }
+}

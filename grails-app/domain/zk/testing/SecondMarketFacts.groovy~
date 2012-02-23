@@ -1,0 +1,18 @@
+package zk.testing
+
+class SecondMarketFacts {
+    String companyName
+    String city
+    String state
+    String secondMarketUrl
+    String companyUrl
+    Date lastFundingDate
+    Double lastFundingAmount
+    Date maxMonth
+    Date minMonth
+    Integer uniqueVisitors
+    Double visitorGrowth
+
+    static constraints = {
+    }
+}

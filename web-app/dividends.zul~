@@ -14,7 +14,7 @@
   <columns sizable="true">
    <column label="Ticker Symbol" sort="auto"/>
    <column align="right" label="Trailing Annual Dividend"/>
-   <column align="right" label="Close"/>
+   <column align="right" label="Last Price"/>
    <column align="right" label="Dividend Yield"/>
   </columns>
   <rows id="dividendRows"></rows>

@@ -1,8 +1,11 @@
 dataSource {
     pooled = true
-    driverClassName = "org.hsqldb.jdbcDriver"
-    username = "sa"
-    password = ""
+    dbCreate = "update"
+    driverClassName = "oracle.jdbc.OracleDriver"
+    url = "jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE"
+    username = "morningstar"
+    password = "uptime5"
+    dialect = org.hibernate.dialect.Oracle10gDialect
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -10,23 +13,3 @@ hibernate {
     cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
 }
 // environment specific settings
-environments {
-    development {
-        dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            url = "jdbc:hsqldb:mem:devDB"
-        }
-    }
-    test {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:hsqldb:mem:testDb"
-        }
-    }
-    production {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
-        }
-    }
-}

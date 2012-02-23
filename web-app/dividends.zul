@@ -7,17 +7,40 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 <window apply="zk.testing.DividendsComposer" border="normal" width="100%">
- <grid>
-  <auxhead>
-   <auxheader label="ETF Dividend Yields" colspan="3"/>
-  </auxhead>
-  <columns sizable="true">
-   <column label="Ticker Symbol" sort="auto"/>
-   <column align="right" label="Trailing Annual Dividend"/>
-   <column align="right" label="Last Price"/>
-   <column align="right" label="Dividend Yield"/>
-  </columns>
-  <rows id="dividendRows"></rows>
- </grid>
+ <tabbox width="100%">
+  <tabs>
+   <tab label="ETF Dividends"/>
+   <tab label="CBOE Weeklies"/>
+  </tabs>
+  <tabpanels>
+   <tabpanel>
+    <grid>
+     <auxhead>
+      <auxheader label="ETF Dividend Yields" colspan="3"/>
+     </auxhead>
+     <columns sizable="true">
+      <column label="Ticker Symbol" sort="auto"/>
+      <column align="right" label="Trailing Annual Dividend"/>
+      <column align="right" label="Last Price"/>
+      <column align="right" label="Dividend Yield"/>
+     </columns>
+     <rows id="dividendRows"></rows>
+    </grid>
+   </tabpanel>
+   <tabpanel>
+    <grid>
+     <auxhead>
+      <auxheader label="CBOE Weeklies Data" colspan="3"/>
+     </auxhead>
+     <columns sizable="true">
+       <column label="Ticker Symbol" sort="auto"/>
+       <column align="right" label="Mean Daily Return"/>
+       <column align="right" label="Sharpe of Daily Returns"/>
+     </columns>
+     <rows id="cboeWeeklyRows"></rows>
+    </grid>
+   </tabpanel>
+  </tabpanels>
+ </tabbox>
 </window>
 </zk>
