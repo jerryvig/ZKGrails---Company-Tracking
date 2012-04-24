@@ -1,4 +1,4 @@
-<html><head><title>Venture Funding List</title><meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head><title>VC Rounds</title><meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" /><script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script><script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 <script type="text/javascript">
    var startRow = 0;
@@ -29,7 +29,7 @@
 
            $("#companyListView").append( $('<li id="li'+i+'"><a href="#dialog" data-transition="slide"><h3>'+records[i].companyName+'</h3><p style="font-weight:bold;">Raised: '+records[i].lastFundingAmount+'<br>Location: '+records[i].city+', '+records[i].state+'</p></a></li>') );                      
          }
-         if ( _startRow > -1 ) {
+         if ( _startRow > 0 ) {
            $("#primaryContent").append( $('<div data-role="controlgroup" data-type="horizontal" align="center"><a href="#" data-role="button" width="100%" id="last30">&nbsp;&nbsp;&nbsp;<< Last 30&nbsp;&nbsp;&nbsp;</a><a href="#" data-role="button" width="100%" id="next30">&nbsp;&nbsp;&nbsp;Next 30 >>&nbsp;&nbsp;&nbsp;</a></div>') ).trigger('create');
          }
          else {
