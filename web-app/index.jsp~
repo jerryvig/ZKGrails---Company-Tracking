@@ -8,12 +8,12 @@
        var records = data.records;
        if ( records.length > 0 ) {
          var monthDate = new Date(records[0].lastFundingDate);
-         $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+2)+'/'+monthDate.getFullYear()+'</li>') );
+         $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+1)+'/'+monthDate.getFullYear()+'</li>') );
          for ( var i=0; i<records.length; i++ ) {
            var recordDate = new Date(records[i].lastFundingDate);
            if ( recordDate.getMonth() != monthDate.getMonth() ) {
               monthDate = new Date(records[i].lastFundingDate);
-              $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+2)+'/'+monthDate.getFullYear()+'</li>') );
+              $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+1)+'/'+monthDate.getFullYear()+'</li>') );
            }
 
            $("#companyListView").append( $('<li id="li'+i+'"><a href="#dialog" data-transition="slide"><h3>'+records[i].companyName+'</h3><p style="font-weight:bold;">Raised: '+records[i].lastFundingAmount+'<br>Location: '+records[i].city+', '+records[i].state+'</p></a></li>') );                      
@@ -32,16 +32,13 @@
               $("#companyDataView").children().each(function(){
                  $(this).detach();
               });
-             
-
-              $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Amount: '+records[index].lastFundingAmount+'</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="#"><h2>Last Round: '+records[index].lastFundingAmount+'</h2></a></li>') );
               var lastFundingDate = new Date(records[index].lastFundingDate);
-              $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Date: '+(lastFundingDate.getMonth()+2)+"/"+lastFundingDate.getFullYear()+'</h2></a></li>') );    
+              $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Date: '+(lastFundingDate.getMonth()+1)+"/"+lastFundingDate.getFullYear()+'</h2></a></li>') );    
               $("#companyDataView").append( $('<li><a href="#"><h2>Location: '+records[index].city+', '+records[index].state+'</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="'+records[index].secondMarketUrl+'"><h2>Second Market Profile</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Unique Web Visitors: '+records[index].uniqueVisitors+'</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Web Visitor Growth: '+records[index].visitorGrowth+'</h2></a></li>') );
-
               $("#companyDataView").append( $('<li><a href="'+records[index].companyUrl+'" data-transition="flip"><h2>Visit Company Website</h2></a></li>') );
               $("#companyDataView").listview("refresh");
             }

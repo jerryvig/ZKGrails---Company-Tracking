@@ -39,7 +39,7 @@
               $("#companyDataView").append( $('<li><a href="'+records[index].secondMarketUrl+'"><h2>Second Market Profile</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Unique Web Visitors: '+records[index].uniqueVisitors+'</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Web Visitor Growth: '+records[index].visitorGrowth+'</h2></a></li>') );
-              $("#companyDataView").append( $('<li><a href="'+records[index].companyUrl+'" data-transition="flip"><h2>Visit Company Website</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="'+records[index].companyUrl+'" data-transition="flip" target="_blank"><h2>Visit Company Website</h2></a></li>') );
               $("#companyDataView").listview("refresh");
             }
          });
@@ -51,7 +51,7 @@
 </head><body> 
 <div data-role="page" data-theme="b">
  <div data-role="header">
-   <h1>Venture Funding Company List</h1>
+   <h1>Recent VC Rounds</h1>
  </div>
  <div data-role="content">
    <div class="content-primary">
