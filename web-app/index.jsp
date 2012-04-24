@@ -8,21 +8,39 @@
        var records = data.records;
        if ( records.length > 0 ) {
          var monthDate = new Date(records[0].lastFundingDate);
-         $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+2)+'/'+monthDate.getFullYear()+'</li>') );
+         $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+1)+'/'+monthDate.getFullYear()+'</li>') );
          for ( var i=0; i<records.length; i++ ) {
            var recordDate = new Date(records[i].lastFundingDate);
            if ( recordDate.getMonth() != monthDate.getMonth() ) {
               monthDate = new Date(records[i].lastFundingDate);
-              $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+2)+'/'+monthDate.getFullYear()+'</li>') );
+              $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+1)+'/'+monthDate.getFullYear()+'</li>') );
            }
 
-           $("#companyListView").append( $('<li id="li'+i+'"><a href="#"><h3>'+records[i].companyName+'</h3><p style="font-weight:bold;">Raised: '+records[i].lastFundingAmount+'<br>Location: '+records[i].city+', '+records[i].state+'</p></a></li>') );                      
+           $("#companyListView").append( $('<li id="li'+i+'"><a href="#dialog" data-transition="slide"><h3>'+records[i].companyName+'</h3><p style="font-weight:bold;">Raised: '+records[i].lastFundingAmount+'<br>Location: '+records[i].city+', '+records[i].state+'</p></a></li>') );                      
          }
+
          $("li").click(function(){
             var id = $(this).attr("id");
             if ( id.indexOf("li") > -1 ) {
-              var index = id.substr(2,1);
-              
+              var index = id.substr(2,4);
+
+              $("#dialogHeader").children().each(function(){
+                 $(this).detach();
+              });
+              $("#dialogHeader").append( $('<div>'+records[index].companyName+'</div>') );
+
+              $("#companyDataView").children().each(function(){
+                 $(this).detach();
+              });
+              $("#companyDataView").append( $('<li><a href="#"><h2>Last Round: '+records[index].lastFundingAmount+'</h2></a></li>') );
+              var lastFundingDate = new Date(records[index].lastFundingDate);
+              $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Date: '+(lastFundingDate.getMonth()+1)+"/"+lastFundingDate.getFullYear()+'</h2></a></li>') );    
+              $("#companyDataView").append( $('<li><a href="#"><h2>Location: '+records[index].city+', '+records[index].state+'</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="'+records[index].secondMarketUrl+'"><h2>Second Market Profile</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="#"><h2>Unique Web Visitors: '+records[index].uniqueVisitors+'</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="#"><h2>Web Visitor Growth: '+records[index].visitorGrowth+'</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="'+records[index].companyUrl+'" data-transition="flip"><h2>Visit Company Website</h2></a></li>') );
+              $("#companyDataView").listview("refresh");
             }
          });
          $("#companyListView").listview("refresh");
@@ -37,18 +55,23 @@
  </div>
  <div data-role="content">
    <div class="content-primary">
-   <ul data-role="listview" id="companyListView">
-    <!-- <li data-role="list-divider">April 2012</li>
-    <li><a href="#">Sapphire Energy<span class="ui-li-count">$144,000,000</span></a></li>
-     <li><a href="#">Skout<span class="ui-li-count">$22,000,000</span></a></li>
-     <li data-role="list-divider">March 2012</li>
-     <li><a href="#">Instagram <span class="ui-li-count">$80,000,000</span></a></li>
-     <li><a href="#">Marin Software<span class="ui-li-count">$30,000,000</span></a></li> -->
+    <ul data-role="listview" id="companyListView" data-inset="true"></ul>   
    </div>
  </div>
  <div data-role="footer">
-   <h1>&copy; 2012 MktNeutral.com</h1>
+   <h2>&copy; 2012 MktNeutral.com</h2>
  </div>
+</div>
+<div data-role="page" id="dialog" data-theme="b">
+  <div data-role="header">
+    <h1 id="dialogHeader"></h1>
+  </div>
+  <div data-role="content">
+     <ul data-role="listview" id="companyDataView" data-inset="true"><ul>
+  </div>
+  <div data-role="footer">
+    <h2>&copy; 2012 MktNeutral.com</h2>
+  </div>
 </div>
 </body>
 </html>

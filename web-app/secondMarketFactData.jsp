@@ -5,7 +5,9 @@ if ( request.getParameter("queryName") != null ) {
    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:morningstar/uptime5@localhost:1521:XE");
    Statement stmt = conn.createStatement();
   
-   DecimalFormat dollarFormat = new DecimalFormat( "$#,###" );
+   DecimalFormat dollarFormat = new DecimalFormat("$#,###");
+   DecimalFormat visitorFormat = new DecimalFormat("#,###");
+   DecimalFormat pctFormatter = new DecimalFormat("#,###.00%");
 
    if ( request.getParameter("queryName").equals("startupQuery") ) {
     ResultSet rs = stmt.executeQuery("SELECT * FROM (SELECT * FROM second_market_fact_table WHERE ( state='CA' ) ORDER BY last_funding_date DESC, last_funding_amount DESC) WHERE rownum<100");
@@ -23,8 +25,8 @@ if ( request.getParameter("queryName") != null ) {
      jsonRecord.put("lastFundingAmount",dollarFormat.format(rs.getDouble(7)));
      if ( rs.getDate(8) != null ) jsonRecord.put("maxMonth",rs.getDate(8).toString());
      if ( rs.getDate(9) != null ) jsonRecord.put("minMonth",rs.getDate(9).toString());
-     jsonRecord.put("uniqueVisitors",Integer.toString(rs.getInt(10)));
-     jsonRecord.put("visitorGrowth",Double.toString(rs.getDouble(11)));
+     jsonRecord.put("uniqueVisitors",visitorFormat.format(rs.getInt(10)));
+     jsonRecord.put("visitorGrowth",pctFormatter.format(rs.getDouble(11)));
      jsonArray.put( jsonRecord );
     }   
     rs.close();
