@@ -1,15 +1,21 @@
 <html><head><title>Venture Funding List</title><meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js " type="text/javascript"></script>
-<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" /><script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script><script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 <script type="text/javascript">
- $(document).ready(function(){
-    $.getJSON('./secondMarketFactData.jsp?queryName=startupQuery', function(data){
+   var startRow = 0;
+   var endRow = 29;
+
+   function primaryContent( _startRow, _endRow ) {
+    var queryString = './secondMarketFactData.jsp?queryName=scrollQuery&startRow='+_startRow+'&endRow='+_endRow;
+    $.getJSON( queryString, function(data){
        var records = data.records;
        if ( records.length > 0 ) {
          var monthDateString = records[0].lastFundingDate;
          var pieces = monthDateString.split("-");
          var monthDate = new Date(pieces[0],pieces[1],pieces[2]);
+         $("#primaryContent").children().each(function(){
+           $(this).detach();
+         });
+         $("#primaryContent").append( $('<ul data-role="listview" id="companyListView" data-inset="true"></ul>') );
          $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth())+'/'+monthDate.getFullYear()+'</li>') );
          for ( var i=0; i<records.length; i++ ) {
            var lastFundingDateString = records[i].lastFundingDate;
@@ -23,6 +29,23 @@
 
            $("#companyListView").append( $('<li id="li'+i+'"><a href="#dialog" data-transition="slide"><h3>'+records[i].companyName+'</h3><p style="font-weight:bold;">Raised: '+records[i].lastFundingAmount+'<br>Location: '+records[i].city+', '+records[i].state+'</p></a></li>') );                      
          }
+         if ( _startRow > -1 ) {
+           $("#primaryContent").append( $('<div data-role="controlgroup" data-type="horizontal" align="center"><a href="#" data-role="button" width="100%" id="last30">&nbsp;&nbsp;&nbsp;<< Last 30&nbsp;&nbsp;&nbsp;</a><a href="#" data-role="button" width="100%" id="next30">&nbsp;&nbsp;&nbsp;Next 30 >>&nbsp;&nbsp;&nbsp;</a></div>') ).trigger('create');
+         }
+         else {
+           $("#primaryContent").append( $('<div data-role="controlgroup" data-type="horizontal" align="center"><a href="#" data-role="button" width="100%" id="next30">&nbsp;&nbsp;&nbsp;Next 30 >>&nbsp;&nbsp;&nbsp;</a></div>') ).trigger('create');
+         }
+
+         $("#next30").click(function(){
+            startRow += 30;
+            endRow += 30;
+            primaryContent( startRow, endRow );
+         });
+         $("#last30").click(function(){
+            startRow -= 30;
+            endRow -= 30;
+            primaryContent( startRow, endRow );
+         });
 
          $("li").click(function(){
             var id = $(this).attr("id");
@@ -53,6 +76,10 @@
          $("#companyListView").listview("refresh");
        }
     });
+   }
+
+  $(document).ready(function(){
+    primaryContent( startRow, endRow );
   });
 </script>
 </head><body> 
@@ -61,9 +88,7 @@
    <h1>Recent VC Rounds</h1>
  </div>
  <div data-role="content">
-   <div class="content-primary">
-    <ul data-role="listview" id="companyListView" data-inset="true"></ul>   
-   </div>
+   <div class="content-primary" id="primaryContent"></div>
  </div>
  <div data-role="footer">
    <h2>&copy; 2012 MktNeutral.com</h2>

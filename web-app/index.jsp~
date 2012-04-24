@@ -7,13 +7,18 @@
     $.getJSON('./secondMarketFactData.jsp?queryName=startupQuery', function(data){
        var records = data.records;
        if ( records.length > 0 ) {
-         var monthDate = new Date(records[0].lastFundingDate);
-         $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+1)+'/'+monthDate.getFullYear()+'</li>') );
+         var monthDateString = records[0].lastFundingDate;
+         var pieces = monthDateString.split("-");
+         var monthDate = new Date(pieces[0],pieces[1],pieces[2]);
+         $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth())+'/'+monthDate.getFullYear()+'</li>') );
          for ( var i=0; i<records.length; i++ ) {
-           var recordDate = new Date(records[i].lastFundingDate);
+           var lastFundingDateString = records[i].lastFundingDate;
+           pieces = lastFundingDateString.split("-");
+           var recordDate = new Date(pieces[0],pieces[1],pieces[2]);
+         
            if ( recordDate.getMonth() != monthDate.getMonth() ) {
-              monthDate = new Date(records[i].lastFundingDate);
-              $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth()+1)+'/'+monthDate.getFullYear()+'</li>') );
+              monthDate = new Date(pieces[0],pieces[1],pieces[2]);
+              $("#companyListView").append( $('<li data-role="list-divider">'+(monthDate.getMonth())+'/'+monthDate.getFullYear()+'</li>') );
            }
 
            $("#companyListView").append( $('<li id="li'+i+'"><a href="#dialog" data-transition="slide"><h3>'+records[i].companyName+'</h3><p style="font-weight:bold;">Raised: '+records[i].lastFundingAmount+'<br>Location: '+records[i].city+', '+records[i].state+'</p></a></li>') );                      
@@ -33,8 +38,10 @@
                  $(this).detach();
               });
               $("#companyDataView").append( $('<li><a href="#"><h2>Last Round: '+records[index].lastFundingAmount+'</h2></a></li>') );
-              var lastFundingDate = new Date(records[index].lastFundingDate);
-              $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Date: '+(lastFundingDate.getMonth()+1)+"/"+lastFundingDate.getFullYear()+'</h2></a></li>') );    
+              var lfdString = records[index].lastFundingDate;
+              pieces = lfdString.split("-");
+              var lastFundingDate = new Date(pieces[0],pieces[1],pieces[2]);
+              $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Date: '+(lastFundingDate.getMonth())+"/"+lastFundingDate.getFullYear()+'</h2></a></li>') );    
               $("#companyDataView").append( $('<li><a href="#"><h2>Location: '+records[index].city+', '+records[index].state+'</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="'+records[index].secondMarketUrl+'"><h2>Second Market Profile</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Unique Web Visitors: '+records[index].uniqueVisitors+'</h2></a></li>') );
@@ -72,6 +79,4 @@
   <div data-role="footer">
     <h2>&copy; 2012 MktNeutral.com</h2>
   </div>
-</div>
-</body>
-</html>
+</div></body></html>

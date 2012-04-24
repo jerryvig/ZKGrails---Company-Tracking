@@ -9,8 +9,15 @@ if ( request.getParameter("queryName") != null ) {
    DecimalFormat visitorFormat = new DecimalFormat("#,###");
    DecimalFormat pctFormatter = new DecimalFormat("#,###.00%");
 
+   ResultSet rs = null;
    if ( request.getParameter("queryName").equals("startupQuery") ) {
-    ResultSet rs = stmt.executeQuery("SELECT * FROM (SELECT * FROM second_market_fact_table WHERE ( state='CA' ) ORDER BY last_funding_date DESC, last_funding_amount DESC) WHERE rownum<100");
+      rs = stmt.executeQuery("SELECT * FROM (SELECT * FROM second_market_fact_table WHERE ( state='CA' ) ORDER BY last_funding_date DESC, last_funding_amount DESC) WHERE rownum<30");
+   }
+   else if ( request.getParameter("queryName").equals("scrollQuery") ) {
+     String startRow = request.getParameter("startRow");
+     String endRow = request.getParameter("endRow");
+     rs = stmt.executeQuery("SELECT * FROM (SELECT a.*, ROWNUM r FROM (SELECT * FROM second_market_fact_table WHERE ( state='CA' ) ORDER BY last_funding_date DESC, last_funding_amount DESC) a WHERE rownum<="+endRow+") WHERE r>="+startRow);
+   }
 
     JSONArray jsonArray = new JSONArray();
 
@@ -34,7 +41,6 @@ if ( request.getParameter("queryName") != null ) {
     JSONObject records = new JSONObject();
     records.put("records",jsonArray);
     out.print( records.toString() );
-   }
 
    conn.close();
 } %>
