@@ -33,5 +33,4 @@ if ( request.getParameter("queryName") != null ) {
    }
 
    conn.close();
-}
-%>
+} %>
