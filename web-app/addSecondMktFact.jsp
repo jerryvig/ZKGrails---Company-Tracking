@@ -64,7 +64,7 @@ if ( request.getParameter("companyName") != null
      DecimalFormat vFmt = new DecimalFormat("#,###");
      DecimalFormat pctFmt = new DecimalFormat("#,###.00%");
 
-     ResultSet rs = stmt.executeQuery("SELECT * FROM second_market_fact_table WHERE company_name='"+companyName+"'");
+     ResultSet rs = stmt.executeQuery("SELECT * FROM (SELECT * FROM second_market_fact_table WHERE company_name='"+companyName+"' ORDER BY id DESC) WHERE rownum<2");
      while ( rs.next() ) {
        JSONObject jsonObj = new JSONObject();
        jsonObj.put("companyName",rs.getString(1).trim());
