@@ -66,7 +66,7 @@
               var lastFundingDate = new Date(pieces[0],pieces[1],pieces[2]);
               $("#companyDataView").append( $('<li><a href="#"><h2>Last Funding Date: '+(lastFundingDate.getMonth())+"/"+lastFundingDate.getFullYear()+'</h2></a></li>') );    
               $("#companyDataView").append( $('<li><a href="#"><h2>Location: '+records[index].city+', '+records[index].state+'</h2></a></li>') );
-              $("#companyDataView").append( $('<li><a href="'+records[index].secondMarketUrl+'"><h2>Second Market Profile</h2></a></li>') );
+              $("#companyDataView").append( $('<li><a href="'+records[index].secondMarketUrl+'" data-transition="flip" target="_blank"><h2>Second Market Profile</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Unique Web Visitors: '+records[index].uniqueVisitors+'</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="#"><h2>Web Visitor Growth: '+records[index].visitorGrowth+'</h2></a></li>') );
               $("#companyDataView").append( $('<li><a href="'+records[index].companyUrl+'" data-transition="flip" target="_blank"><h2>Visit Company Website</h2></a></li>') );
