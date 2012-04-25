@@ -29,49 +29,50 @@
   });
 </script>
 <script type="text/javascript">
- function doSubmit() {
-   alert( " this will be the dosubmit here." );
+ function doSubmit( _getQuery ) {
+   //do ajax post of the data here.
+   //if the post is successful tell the browser to show the success dialog.
  }
 
  function validateAndPostForm() {
      //check each mandatory field
      //if mandatory fields are missing or blank highlight in red.
-     var companyName = $.trim( $("#companyNameInput").val() );
-     var city = $.trim( $("#cityInput").val() );
-     var state = $.trim( $("#stateSelect").val() );
-     var companyUrl = $.trim( $("#companyUrlInput").val() );
-     var lastFundingDate = $.trim( $("#lastFundingDateInput").val() );
-     var lastFundingAmount = $.trim( $("#lastFundingAmountInput").val() );
-     var minDate = $.trim( $("#minDateInput").val() );
-     var maxDate = $.trim( $("#maxDateInput").val() );
-     var secondMarketUrl = $.trim( $("#secondMarketUrlInput").val() );
-     var uniqueVisitors = $.trim( $("#uniqueVisitorsInput").val() );
-     var visitorGrowth = $.trim( $("#visitorGrowthInput").val() );
-
+     var getQuery = new Object();
+     getQuery.companyName = $.trim( $("#companyNameInput").val() );
+     getQuery.city = $.trim( $("#cityInput").val() );
+     getQuery.state = $.trim( $("#stateSelect").val() );
+     getQuery.companyUrl = $.trim( $("#companyUrlInput").val() );
+     getQuery.lastFundingDate = $.trim( $("#lastFundingDateInput").val() );
+     getQuery.lastFundingAmount = $.trim( $("#lastFundingAmountInput").val() );
+     getQuery.minDate = $.trim( $("#minDateInput").val() );
+     getQuery.maxDate = $.trim( $("#maxDateInput").val() );
+     getQuery.secondMarketUrl = $.trim( $("#secondMarketUrlInput").val() );
+     getQuery.uniqueVisitors = $.trim( $("#uniqueVisitorsInput").val() );
+     getQuery.visitorGrowth = $.trim( $("#visitorGrowthInput").val() );
      var badField = true;
 
-     if ( companyName == "" ) {
+     if ( getQuery.companyName == "" ) {
        $("#companyNameLbl").attr("style","font-weight:bold;font-style:italic;color:red;");
        badField = false;
      }
      else {  $("#companyNameLbl").attr("style",""); }
-     if ( city == "" ) {
+     if ( getQuery.city == "" ) {
        $("#cityLbl").attr("style","font-weight:bold;font-style:italic;color:red;");
        badField = false;
      } else {  $("#cityLbl").attr("style",""); }
-     if ( state == "" ) {
+     if ( getQuery.state == "" ) {
        $("#stateLbl").attr("style","font-weight:bold;font-style:italic;color:red;");
        badField = false;
      } else { $("#stateLbl").attr("style",""); }
-     if ( companyUrl == "" ) {
+     if ( getQuery.companyUrl == "" ) {
        $("#companyUrlLbl").attr("style","font-weight:bold;font-style:italic;color:red;");
        badField = false;
      } else { $("#companyUrlLbl").attr("style",""); }
-     if ( lastFundingDate == "" ) {
+     if ( getQuery.lastFundingDate == "" ) {
        $("#lastFundingDateLbl").attr("style","font-weight:bold;font-style:italic;color:red;");
        badField = false; 
      } else { $("#lastFundingDateLbl").attr("style",""); }
-     if ( lastFundingAmount == "" ) { 
+     if ( getQuery.lastFundingAmount == "" ) { 
        $("#lastFundingAmountLbl").attr("style","font-weight:bold;font-style:italic;color:red;");
        badField = false; 
      } else { $("#lastFundingAmountLbl").attr("style",""); }
@@ -79,7 +80,7 @@
      if ( !badField ) {
        alert( "Please correct the input for the fields marked in red." );
      } else {
-        doSubmit();
+        doSubmit( getQuery );
      }
   }
 </script>
