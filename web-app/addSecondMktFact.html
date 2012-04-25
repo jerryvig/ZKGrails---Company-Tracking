@@ -26,6 +26,11 @@
      $("#CA").attr("selected",true);
      $("#stateSelect").attr("selectedIndex",5);
      $("#stateSelect").selectmenu("refresh");
+
+     $("#addAnotherAnchor").click(function(){
+        alert( "you clicked to add another" );        
+     });
+
   });
 </script>
 <script type="text/javascript">
@@ -216,7 +221,7 @@
       <li><a href="#" id="uniqueVisitorsDialog"></a></li>
       <li><a href="#" id="visitorGrowthDialog"></a></li>
     </ul>
-    <div align="center"><a href="./addSecondMktFact.html" data-role="button">Add Another Record</a></div>
+    <div align="center"><a href="#" data-role="button" id="addAnotherAnchor">Add Another Record</a></div>
    </div>
  </div>
  <div data-role="footer">
