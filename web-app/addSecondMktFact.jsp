@@ -6,8 +6,8 @@ if ( request.getParameter("companyName") != null
      && request.getParameter("companyUrl") != null
      && request.getParameter("lastFundingDate") != null
      && request.getParameter("lastFundingAmount") != null
-     && request.getParameter("minMonth") != null 
-     && request.getParameter("maxMonth") != null ) {
+     && request.getParameter("minDate") != null 
+     && request.getParameter("maxDate") != null ) {
 
 
    Class.forName("oracle.jdbc.OracleDriver");
@@ -23,15 +23,15 @@ if ( request.getParameter("companyName") != null
    String companyUrl = request.getParameter("companyUrl");
    java.sql.Date lastFundingDate = new java.sql.Date( dateFmt.parse(request.getParameter("lastFundingDate")).getTime() );
    double lastFundingAmount = Double.parseDouble(request.getParameter("lastFundingAmount").replace(",",""));
-   java.sql.Date minMonth = new java.sql.Date( dateFmt.parse(request.getParameter("minMonth")).getTime() );
-   java.sql.Date maxMonth = new java.sql.Date( dateFmt.parse(request.getParameter("maxMonth")).getTime() );
+   java.sql.Date minMonth = new java.sql.Date( dateFmt.parse(request.getParameter("minDate")).getTime() );
+   java.sql.Date maxMonth = new java.sql.Date( dateFmt.parse(request.getParameter("maxDate")).getTime() );
    int uniqueVisitors = 0;
    double visitorGrowth = 0.0;
    String secondMarketUrl = "";
    int version = 1;
 
    if ( request.getParameter("uniqueVisitors") != null ) {
-     uniqueVisitors = Integer.parseInt(request.getParameter("unique_visitors").replace(",",""));
+     uniqueVisitors = Integer.parseInt(request.getParameter("uniqueVisitors").replace(",",""));
    }
    if ( request.getParameter("visitorGrowth") != null ) {
      visitorGrowth = Double.parseDouble(request.getParameter("visitorGrowth").replace(",",""));
@@ -75,7 +75,7 @@ if ( request.getParameter("companyName") != null
        jsonObj.put("lastFundingDate",rs.getDate(6).toString());
        jsonObj.put("lastFundingAmount",dollarFmt.format(rs.getDouble(7)));
        if ( rs.getDate(8) != null ) jsonObj.put("maxMonth",rs.getDate(8));
-       if ( rs.getDate(9) != null ) jsonObj.put("maxMonth",rs.getDate(8));
+       if ( rs.getDate(9) != null ) jsonObj.put("minMonth",rs.getDate(9));
        jsonObj.put("uniqueVisitors",vFmt.format(rs.getInt(10)));
        jsonObj.put("visitorGrowth",pctFmt.format(rs.getDouble(11)));
        jsonArray.put(jsonObj);

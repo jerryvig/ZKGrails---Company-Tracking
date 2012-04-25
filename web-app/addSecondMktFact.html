@@ -29,9 +29,40 @@
   });
 </script>
 <script type="text/javascript">
+ function showSuccessDialog( _addedRecord ) {
+   $.each($("#companyNameDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#cityDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#stateDialog").children(),function(){
+      $(this).detach();
+   });
+
+   $("#companyNameDialog").append( 'Company Name: '+_addedRecord.companyName );
+   $("#cityDialog").append( 'City: '+_addedRecord.city );
+   $("#stateDialog").append( 'State: '+_addedRecord.state );
+   $("#lastFundingDateDialog").append( 'Last Funding Date: '+_addedRecord.lastFundingDate );
+   $("#lastFundingAmountDialog").append( 'Last Funding Amount: '+_addedRecord.lastFundingAmount );
+   $("#minDateDialog").append( 'Min Date: '+_addedRecord.minMonth );
+   $("#maxDateDialog").append( 'Max Date: '+_addedRecord.maxMonth );
+   $("#secondMarketUrlDialog").append( 'SecondMarket URL: '+_addedRecord.secondMarketUrl );
+   $("#uniqueVisitorsDialog").append( 'Unique Visitors: '+_addedRecord.uniqueVisitors );
+   $("#visitorGrowthDialog").append( 'Visitor Growth: '+_addedRecord.visitorGrowth );
+   
+   $.mobile.changePage("#successDialog", {transition:"slide"});
+ }
+
  function doSubmit( _getQuery ) {
    //do ajax post of the data here.
    //if the post is successful tell the browser to show the success dialog.
+   var getRequest = './addSecondMktFact.jsp?companyName='+_getQuery.companyName+'&city='+_getQuery.city+'&state='+_getQuery.state+'&companyUrl='+encodeURIComponent(_getQuery.companyUrl)+'&lastFundingDate='+_getQuery.lastFundingDate+'&lastFundingAmount='+_getQuery.lastFundingAmount+'&minDate='+_getQuery.minDate+'&maxDate='+_getQuery.maxDate+'&secondMarketUrl='+encodeURIComponent(_getQuery.secondMarketUrl)+'&uniqueVisitors='+_getQuery.uniqueVisitors+'&visitorGrowth='+_getQuery.visitorGrowth;
+   $.getJSON( getRequest, function(data){
+      if ( data.status == 'success' ) {
+        showSuccessDialog( data.records[0] );
+      }
+   });
  }
 
  function validateAndPostForm() {
@@ -145,4 +176,30 @@
  <div data-role="footer">
    <h2>&copy; 2012 MktNeutral.com</h2>
  </div>
-</div></body></html>
+</div>
+<div data-role="page" id="successDialog" data-theme="b">
+ <div data-role="header">
+   <h1>Record Added Successfully</h1>
+ </div>
+ <div data-role="content" data-theme="b">
+   <div class="content-primary" id="primaryContent">
+    <ul data-role="listview" id="recordListView" data-inset="true">
+      <li><a href="#" id="companyNameDialog"></a></li>
+      <li><a href="#" id="cityDialog"></a></li>
+      <li><a href="#" id="stateDialog"></a></li>
+      <li><a href="#" id="lastFundingDateDialog"></a></li>
+      <li><a href="#" id="lastFundingAmountDialog"></a></li>
+      <li><a href="#" id="minDateDialog"></a></li>
+      <li><a href="#" id="maxDateDialog"></a></li>
+      <li><a href="#" id="secondMarketUrlDialog"></a></li>
+      <li><a href="#" id="uniqueVisitorsDialog"></a></li>
+      <li><a href="#" id="visitorGrowthDialog"></a></li>
+    </ul>
+    <div align="center"><a href="./addSecondMktFact.html" data-role="button">Add Another Record</a></div>
+   </div>
+ </div>
+ <div data-role="footer">
+   <h2>&copy; 2012 MktNeutral.com</h2>
+ </div>
+</div>
+</body></html>
