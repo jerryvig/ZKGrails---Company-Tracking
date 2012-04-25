@@ -39,17 +39,38 @@
    $.each($("#stateDialog").children(),function(){
       $(this).detach();
    });
+   $.each($("#lastFundingDateDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#lastFundingAmountDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#minDateDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#maxDateDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#secondMarketUrlDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#uniqueVisitorsDialog").children(),function(){
+      $(this).detach();
+   });
+   $.each($("#visitorGrowthDialog").children(),function(){
+      $(this).detach();
+   });
 
-   $("#companyNameDialog").append( 'Company Name: '+_addedRecord.companyName );
-   $("#cityDialog").append( 'City: '+_addedRecord.city );
-   $("#stateDialog").append( 'State: '+_addedRecord.state );
-   $("#lastFundingDateDialog").append( 'Last Funding Date: '+_addedRecord.lastFundingDate );
-   $("#lastFundingAmountDialog").append( 'Last Funding Amount: '+_addedRecord.lastFundingAmount );
-   $("#minDateDialog").append( 'Min Date: '+_addedRecord.minMonth );
-   $("#maxDateDialog").append( 'Max Date: '+_addedRecord.maxMonth );
-   $("#secondMarketUrlDialog").append( 'SecondMarket URL: '+_addedRecord.secondMarketUrl );
-   $("#uniqueVisitorsDialog").append( 'Unique Visitors: '+_addedRecord.uniqueVisitors );
-   $("#visitorGrowthDialog").append( 'Visitor Growth: '+_addedRecord.visitorGrowth );
+   $("#companyNameDialog").append( $('<div>Company Name: '+_addedRecord.companyName + '</div>' ) );
+   $("#cityDialog").append( $('<div>City: '+_addedRecord.city + '</div>' ) );
+   $("#stateDialog").append( $('<div>State: '+_addedRecord.state + '</div>' ) );
+   $("#lastFundingDateDialog").append( $('<div>Last Funding Date: '+_addedRecord.lastFundingDate + '</div>' ) );
+   $("#lastFundingAmountDialog").append( $('<div>Last Funding Amount: '+_addedRecord.lastFundingAmount + '</div>' ) );
+   $("#minDateDialog").append( $('<div>Min Date: '+_addedRecord.minMonth+'</div>' ) );
+   $("#maxDateDialog").append( $('<div>Max Date: '+_addedRecord.maxMonth + '</div>' ) );
+   $("#secondMarketUrlDialog").append( $('<div>SecondMarket URL: '+_addedRecord.secondMarketUrl + '</div>' ) );
+   $("#uniqueVisitorsDialog").append( $('<div>Unique Visitors: '+_addedRecord.uniqueVisitors + '</div>' ) );
+   $("#visitorGrowthDialog").append( $('<div>Visitor Growth: '+_addedRecord.visitorGrowth + '</div>' ) );
    
    $.mobile.changePage("#successDialog", {transition:"slide"});
  }
