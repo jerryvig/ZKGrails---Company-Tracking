@@ -14,10 +14,14 @@
      var lastFundingDateDefault = today.getFullYear() + '-' + todayMonth + '-01';
      var maxDateDefault = thirtyDaysAgo.getFullYear() + '-' + thirtyDaysAgoMonth + '-01';
      var minDateDefault = (thirtyDaysAgo.getFullYear()-1) + '-' + thirtyDaysAgoMonth + '-01';    
+     var uniqueVisitorsDefault = "0";
+     var visitorGrowthDefault = "0.0";
 
     $("#lastFundingDateInput").attr("value",lastFundingDateDefault);
     $("#maxDateInput").attr("value",maxDateDefault);
     $("#minDateInput").attr("value",minDateDefault);
+    $("#uniqueVisitorsInput").attr("value",uniqueVisitorsDefault);
+    $("#visitorGrowthInput").attr("value",visitorGrowthDefault);
 
      var states = new Array( 'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY' );
      for ( var i=0; i<states.length; i++ ) {
@@ -28,7 +32,15 @@
      $("#stateSelect").selectmenu("refresh");
 
      $("#addAnotherAnchor").click(function(){
-        alert( "you clicked to add another" );        
+       $("#companyNameInput").attr("value","");
+       $("#cityInput").attr("value","");
+       $("#companyUrlInput").attr("value","");
+       $("#lastFundingAmountInput").attr("value","");
+       $("#secondMarketUrlInput").attr("value","");
+       $("#uniqueVisitorsInput").attr("value","0");
+       $("#visitorGrowthInput").attr("value","0.0");
+
+       $.mobile.changePage("#formPage", {transition:"slide"});
      });
 
   });
@@ -142,7 +154,7 @@
   }
 </script>
 </head><body> 
-<div data-role="page" data-theme="b">
+<div data-role="page" id="formPage" data-theme="b">
  <div data-role="header">
    <h1>Add VC Round Record</h1>
  </div>
