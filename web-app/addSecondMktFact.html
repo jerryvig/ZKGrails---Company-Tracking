@@ -46,6 +46,10 @@
        $.mobile.changePage("#formPage", {transition:"slide"});
      });
 
+     $("#indexPageAnchor").click(function(){
+        $(location).attr('href','./index.html');
+     });
+
      //autocomplete for cities input
      $("#cityInput").autocomplete({ source: [ 'San Francisco', 'Mountain View', 'Palo Alto', 'San Diego', 'Sunnyvale', 'San Jose', 'Los Angeles', 'Santa Clara', 'San Mateo', 'Redwood City', 'Menlo Park', 'Fremont', 'Santa Monica', 'Irvine', 'Cupertino', 'Pleasanton', 'Milpitas', 'Campbell', 'South San Francisco', 'Santa Barbara', 'Oakland', 'La Jolla', 'Carlsbad', 'San Carlos', 'Pasadena', 'Berkeley', 'Emeryville', 'Burlingame', 'Los Gatos', 'Foster City', 'Aliso Viejo', 'Hayward', 'El Segundo', 'Los Altos', 'San Bruno', 'Redwood Shores', 'Torrance', 'San Ramon', 'Beverly Hills', 'Venice', 'Newport Beach', 'Hollywood', 'Sacramento', 'Newark', 'Livermore', 'Saratoga', 'West Hollywood', 'Belmont', 'Sausalito', 'Culver City', 'San Rafael', 'Goleta', 'Alameda', 'Sherman Oaks', 'Burbank', 'Woodland Hills', 'San Clemente', 'Novato', 'Calabasas' ]});
 
@@ -240,7 +244,7 @@
       <li><a href="#" id="visitorGrowthDialog"></a></li>
     </ul>
     <div align="center"><a href="#" data-role="button" id="addAnotherAnchor">Add Another Record</a></div>
-    <div align="center"><a href="./index.html" data-role="button">Go to VC Round List Browser</a></div>
+    <div align="center"><a href="#" data-role="button" id="indexPageAnchor">Go to VC Round List Browser</a></div>
    </div>
  </div>
  <div data-role="footer">
