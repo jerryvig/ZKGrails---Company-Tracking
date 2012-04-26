@@ -90,16 +90,16 @@
       $(this).detach();
    });
 
-   $("#companyNameDialog").append( $('<div>Company Name: '+_addedRecord.companyName + '</div>' ) );
-   $("#cityDialog").append( $('<div>City: '+_addedRecord.city + '</div>' ) );
-   $("#stateDialog").append( $('<div>State: '+_addedRecord.state + '</div>' ) );
-   $("#lastFundingDateDialog").append( $('<div>Last Funding Date: '+_addedRecord.lastFundingDate + '</div>' ) );
-   $("#lastFundingAmountDialog").append( $('<div>Last Funding Amount: '+_addedRecord.lastFundingAmount + '</div>' ) );
-   $("#minDateDialog").append( $('<div>Min Date: '+_addedRecord.minMonth+'</div>' ) );
-   $("#maxDateDialog").append( $('<div>Max Date: '+_addedRecord.maxMonth + '</div>' ) );
-   $("#secondMarketUrlDialog").append( $('<div>SecondMarket URL: '+_addedRecord.secondMarketUrl + '</div>' ) );
-   $("#uniqueVisitorsDialog").append( $('<div>Unique Visitors: '+_addedRecord.uniqueVisitors + '</div>' ) );
-   $("#visitorGrowthDialog").append( $('<div>Visitor Growth: '+_addedRecord.visitorGrowth + '</div>' ) );
+   $("#companyNameDialog").append( $('<label>Company Name:</label><label style="position:absolute;left:200px;">'+_addedRecord.companyName+'</label>') );
+   $("#cityDialog").append( $('<label>City:</label><label style="position:absolute;left:200px;">'+_addedRecord.city+'</label>') );
+   $("#stateDialog").append( $('<label>State:</label><label style="position:absolute;left:200px;">'+_addedRecord.state+'</label>') );
+   $("#lastFundingDateDialog").append( $('<label>Last Funding Date:</label><label style="position:absolute;left:200px;">'+_addedRecord.lastFundingDate+'</label>' ) );
+   $("#lastFundingAmountDialog").append( $('<label>Last Funding Amt:</label><label style="position:absolute;left:200px;">'+_addedRecord.lastFundingAmount+'</label>' ) );
+   $("#minDateDialog").append( $('<label>Min Date:</label><label style="position:absolute;left:200px;">'+_addedRecord.minMonth+'</label>' ) );
+   $("#maxDateDialog").append( $('<label>Max Date:</label><label style="position:absolute;left:200px;">'+_addedRecord.maxMonth+'</label>' ) );
+   $("#secondMarketUrlDialog").append( $('<label>Second Mkt URL:</label><label style="position:absolute;left:200px;">'+_addedRecord.secondMarketUrl+'</label>' ) );
+   $("#uniqueVisitorsDialog").append( $('<label>Unique Visitors:</label><label style="position:absolute;left:200px;">'+_addedRecord.uniqueVisitors+'</label>' ) );
+   $("#visitorGrowthDialog").append( $('<label>Visitor Growth:</label><label style="position:absolute;left:200px;">'+_addedRecord.visitorGrowth+'</label>' ) );
    
    $.mobile.changePage("#successDialog", {transition:"slide"});
  }
@@ -175,27 +175,27 @@
    <form>
    <ul data-role="listview" id="recordListView" data-inset="true">
     <li data-role="fieldcontain">
-      <a><label for="companyNameInput" style="font-weight:bold;" id="companyNameLbl">Company Name:</label>
+      <a><label for="companyNameInput" style="font-weight:bold;">Company Name:</label>
       <input type="text" name="companyName" id="companyNameInput"></input></a>
     </li>
     <li data-role="fieldcontain">
-      <a><label for="cityInput" style="font-weight:bold;" id="cityLbl">City:</label>
+      <a><label for="cityInput" style="font-weight:bold;">City:</label>
       <input type="text" name="city" id="cityInput"></input></a>
     </li>
     <li data-role="fieldcontain">
-      <a><label for="stateSelect" style="font-weight:bold;" id="stateLbl">State:</label>
+      <a><label for="stateSelect" style="font-weight:bold;">State:</label>
       <select name="state" id="stateSelect" data-theme="a"></select></a>
     </li>
     <li data-role="fieldcontain">
-      <a><label for="companyUrlInput" style="font-weight:bold;" id="companyUrlLbl">Company URL:</label>
+      <a><label for="companyUrlInput" style="font-weight:bold;">Company URL:</label>
       <input type="text" name="companyUrl" id="companyUrlInput"></input></a>
     </li>
     <li data-role="fieldcontain">
-      <a><label for="lastFundingDateInput" style="font-weight:bold;" id="lastFundingDateLbl">Last Funding Date:</label>
+      <a><label for="lastFundingDateInput" style="font-weight:bold;">Last Funding Date:</label>
       <input name="lastFundingDate" id="lastFundingDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input></a>
     </li>
     <li data-role="fieldcontain">
-      <a><label for="lastFundingAmountInput" style="font-weight:bold;" id="lastFundingAmountLbl">Last Funding Amount:</label>
+      <a><label for="lastFundingAmountInput" style="font-weight:bold;">Last Funding Amount:</label>
       <input type="text" name="lastFundingAmount" id="lastFundingAmountInput"></input></a>
     </li>
    <li data-role="fieldcontain">
@@ -236,16 +236,36 @@
  <div data-role="content" data-theme="b">
    <div class="content-primary" id="primaryContent">
     <ul data-role="listview" id="recordListView" data-inset="true">
-      <li><a href="#" id="companyNameDialog"></a></li>
-      <li><a href="#" id="cityDialog"></a></li>
-      <li><a href="#" id="stateDialog"></a></li>
-      <li><a href="#" id="lastFundingDateDialog"></a></li>
-      <li><a href="#" id="lastFundingAmountDialog"></a></li>
-      <li><a href="#" id="minDateDialog"></a></li>
-      <li><a href="#" id="maxDateDialog"></a></li>
-      <li><a href="#" id="secondMarketUrlDialog"></a></li>
-      <li><a href="#" id="uniqueVisitorsDialog"></a></li>
-      <li><a href="#" id="visitorGrowthDialog"></a></li>
+      <li data-role="fieldcontain">
+        <a href="#" id="companyNameDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="cityDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="stateDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="lastFundingDateDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="lastFundingAmountDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="minDateDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="maxDateDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="secondMarketUrlDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="uniqueVisitorsDialog"></a>
+      </li>
+      <li data-role="fieldcontain">
+        <a href="#" id="visitorGrowthDialog"></a>
+      </li>
     </ul>
     <div align="center"><a href="#" data-role="button" id="addAnotherAnchor">Add Another Record</a></div>
     <div align="center"><a href="#" data-role="button" id="indexPageAnchor">Go to VC Round List Browser</a></div>
