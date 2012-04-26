@@ -172,55 +172,57 @@
  </div>
  <div data-role="content" data-theme="b">
    <div class="content-primary" id="primaryContent">
+   <form>
    <ul data-role="listview" id="recordListView" data-inset="true">
-    <li data-role="fieldcontain" align="left">
-      <label for="companyName" style="font-weight:bold;" id="companyNameLbl">Company Name:</label>
-      <input type="text" name="companyName" id="companyNameInput"></input>
+    <li data-role="fieldcontain">
+      <a><label for="companyNameInput" style="font-weight:bold;" id="companyNameLbl">Company Name:</label>
+      <input type="text" name="companyName" id="companyNameInput"></input></a>
     </li>
-    <li data-role="fieldcontain" align="left">
-      <label for="city" style="font-weight:bold;" id="cityLbl">City:</label>
-      <input type="text" name="city" id="cityInput"></input>
+    <li data-role="fieldcontain">
+      <a><label for="cityInput" style="font-weight:bold;" id="cityLbl">City:</label>
+      <input type="text" name="city" id="cityInput"></input></a>
     </li>
-    <li data-role="fieldcontain" align="left">
-      <label for="state" style="font-weight:bold;" id="stateLbl">State:</label>
-      <select name="state" id="stateSelect"></select>
+    <li data-role="fieldcontain">
+      <a><label for="stateSelect" style="font-weight:bold;" id="stateLbl">State:</label>
+      <select name="state" id="stateSelect" data-theme="a"></select></a>
     </li>
-    <li data-role="fieldcontain" align="left">
-      <label for="companyUrl" style="font-weight:bold;" id="companyUrlLbl">Company URL:</label>
-      <input type="text" name="companyUrl" id="companyUrlInput"></input>
+    <li data-role="fieldcontain">
+      <a><label for="companyUrlInput" style="font-weight:bold;" id="companyUrlLbl">Company URL:</label>
+      <input type="text" name="companyUrl" id="companyUrlInput"></input></a>
     </li>
-    <li data-role="fieldcontain" align="left">
-      <label for="lastFundingDate" style="font-weight:bold;" id="lastFundingDateLbl">Last Funding Date:</label>
-      <input name="lastFundingDate" id="lastFundingDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input>
+    <li data-role="fieldcontain">
+      <a><label for="lastFundingDateInput" style="font-weight:bold;" id="lastFundingDateLbl">Last Funding Date:</label>
+      <input name="lastFundingDate" id="lastFundingDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input></a>
     </li>
-    <li data-role="fieldcontain" align="left">
-      <label for="lastFundingAmount" style="font-weight:bold;" id="lastFundingAmountLbl">Last Funding Amount:</label>
-      <input type="text" name="lastFundingAmount" id="lastFundingAmountInput"></input>
+    <li data-role="fieldcontain">
+      <a><label for="lastFundingAmountInput" style="font-weight:bold;" id="lastFundingAmountLbl">Last Funding Amount:</label>
+      <input type="text" name="lastFundingAmount" id="lastFundingAmountInput"></input></a>
     </li>
-   <li data-role="fieldcontain" align="left">
-      <label for="minDate" style="font-weight:bold;">Min Date:</label>
-      <input name="minDate" id="minDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input>
+   <li data-role="fieldcontain">
+      <a><label for="minDateInput" style="font-weight:bold;">Min Date:</label>
+      <input name="minDate" id="minDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input></a>
     </li>
-   <li data-role="fieldcontain" align="left">
-      <label for="maxDate" style="font-weight:bold;">Max Date:</label>
-      <input name="maxDate" id="maxDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input>
+   <li data-role="fieldcontain">
+      <a><label for="maxDateInput" style="font-weight:bold;">Max Date:</label>
+      <input name="maxDate" id="maxDateInput" type="date" data-role="datebox" data-options='{"mode":"calbox","dateFormat":"%Y-%m-%d"}'></input></a>
    </li>
-   <li data-role="fieldcontain" align="left">
-      <label for="" style="font-weight:bold;">SecondMarket URL:</label>
-      <input type="text" name="secondMarketUrl" id="secondMarketUrlInput"></input>
+   <li data-role="fieldcontain">
+      <a><label for="secondMarketUrlInput" style="font-weight:bold;">SecondMarket URL:</label>
+      <input type="text" name="secondMarketUrl" id="secondMarketUrlInput"></input></a>
    </li>
-   <li data-role="fieldcontain" align="left">
-      <label for="uniqueVisitors" style="font-weight:bold;">Unique Visitors:</label>
-      <input type="text" name="uniqueVisitors" id="uniqueVisitorsInput"></input>
+   <li data-role="fieldcontain">
+      <a><label for="uniqueVisitorsInput" style="font-weight:bold;">Unique Visitors:</label>
+      <input type="text" name="uniqueVisitors" id="uniqueVisitorsInput"></input></a>
    </li>
-   <li data-role="fieldcontain" align="left">
-      <label for="visitorGrowth" style="font-weight:bold;">Visitor Growth:</label>
-      <input type="text" name="visitorGrowth" id="visitorGrowthInput"></input>
+   <li data-role="fieldcontain">
+      <a><label for="visitorGrowthInput" style="font-weight:bold;">Visitor Growth:</label>
+      <input type="text" name="visitorGrowth" id="visitorGrowthInput"></input></a>
     </li>
     <li class="ui-body ui-body-b">
-      <button type="submit" data-theme="b" onclick="validateAndPostForm();">Add Record</button>
+      <a><button type="submit" data-theme="a" onclick="validateAndPostForm();">Add Record</button></a>
     </li>
   </ul>
+  </form>
   </div>
  </div>
  <div data-role="footer">
